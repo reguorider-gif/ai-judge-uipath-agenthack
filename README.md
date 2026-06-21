@@ -47,6 +47,71 @@ The adapter is designed so a hackathon submission can satisfy MIT/Apache reposit
 | `docs/devpost-uipath-draft.md` | Devpost project page draft and video outline. |
 | `docs/devpost-preferences-to-fill.md` | Manual Devpost profile values when browser automation is blocked. |
 
+## UiPath Components Used
+
+This submission is mapped to **UiPath AgentHack Track 3: UiPath Test Cloud**.
+
+The live hackathon environment used for the Devpost submission is:
+
+```text
+https://cloud.uipath.com/aijudgeagenthack/DefaultTenant/testmanager_/AIJ/dashboard
+```
+
+UiPath components used or targeted by this adapter:
+
+- UiPath Automation Cloud Community organization: `aijudgeagenthack`
+- Tenant: `DefaultTenant`
+- UiPath Test Manager / Test Cloud project: `AI Judge AgentHack`
+- Project prefix: `AIJ`
+- Test Cloud-oriented routing contract: `uipath/test-cloud-contract.json`
+
+The intended Test Cloud flow is:
+
+```text
+agentic automation output
+  -> AI Judge claim/evidence audit
+  -> unsupported claims become Test Manager review items
+  -> human signoff before release or publication
+```
+
+## Agent Type
+
+This is a **coded governance adapter for agentic automation output**.
+
+It does not package a UiPath low-code agent. Instead, the repo models the output of an agentic workflow in `examples/agent_output.json`, runs deterministic coded validation in `scripts/run_demo.py`, and maps the result into a UiPath Test Manager/Test Cloud review gate. If extended inside UiPath, this adapter is intended to sit after a UiPath Coded Agent or another agentic automation step and before final release approval.
+
+## Setup Instructions
+
+1. Clone the public repo.
+
+```bash
+git clone https://github.com/reguorider-gif/ai-judge-uipath-agenthack.git
+cd ai-judge-uipath-agenthack
+```
+
+2. Run the deterministic local demo.
+
+```bash
+python3 scripts/run_demo.py
+```
+
+3. Inspect the generated report.
+
+```bash
+cat examples/audit_report.json
+```
+
+4. In UiPath Automation Cloud, open Test Manager and create or select the project:
+
+```text
+Organization: aijudgeagenthack
+Tenant: DefaultTenant
+Project: AI Judge AgentHack
+Prefix: AIJ
+```
+
+5. Use `uipath/test-cloud-contract.json` to map unsupported or overclaimed AI output into Test Manager review items, test cases, or release gates.
+
 ## Run The Demo
 
 ```bash
