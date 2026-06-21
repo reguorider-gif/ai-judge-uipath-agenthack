@@ -1,0 +1,69 @@
+{
+  "adapter": "ai-judge-uipath-agenthack",
+  "run_id": "uipath-agenthack-demo-001",
+  "workflow_name": "agentic-release-quality-gate",
+  "overall_status": "human_review_required",
+  "human_final_required": true,
+  "claim_results": [
+    {
+      "claim_id": "claim-001",
+      "claim": "The new claims audit passed.",
+      "status": "verified",
+      "support_hits": [
+        "claims audit",
+        "passed"
+      ],
+      "evidence_ids": [
+        "ev-001"
+      ],
+      "failure_code": null,
+      "recommended_action": "allow_with_trace"
+    },
+    {
+      "claim_id": "claim-002",
+      "claim": "Fragile tests were reviewed.",
+      "status": "verified",
+      "support_hits": [
+        "fragile tests",
+        "reviewed"
+      ],
+      "evidence_ids": [
+        "ev-002"
+      ],
+      "failure_code": null,
+      "recommended_action": "allow_with_trace"
+    },
+    {
+      "claim_id": "claim-003",
+      "claim": "The automation will reduce manual QA time by 80%.",
+      "status": "contradicted",
+      "support_hits": [],
+      "evidence_ids": [
+        "ev-003"
+      ],
+      "failure_code": "overclaimed_quantified_effect",
+      "recommended_action": "route_to_human_review"
+    },
+    {
+      "claim_id": "claim-004",
+      "claim": "A human approver must sign off before publication.",
+      "status": "verified",
+      "support_hits": [
+        "human approver",
+        "sign off"
+      ],
+      "evidence_ids": [
+        "ev-004"
+      ],
+      "failure_code": null,
+      "recommended_action": "allow_with_trace"
+    }
+  ],
+  "uipath_test_cloud_actions": [
+    {
+      "type": "create_review_task",
+      "claim_id": "claim-003",
+      "reason": "overclaimed_quantified_effect"
+    }
+  ]
+}
