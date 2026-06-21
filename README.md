@@ -38,6 +38,7 @@ The adapter is designed so a hackathon submission can satisfy MIT/Apache reposit
 | Path | Purpose |
 |---|---|
 | `scripts/run_demo.py` | Deterministic local demo runner using Python standard library only. |
+| `scripts/render_demo_video.mjs` | Generates the Devpost demo MP4 from local repo data and storyboard frames. |
 | `examples/agent_output.json` | Sample UiPath-flavored agent output with claim/evidence data. |
 | `examples/audit_report.json` | Generated report output from the demo runner. |
 | `uipath/test-cloud-contract.json` | Data contract for Test Cloud-oriented routing. |
@@ -58,6 +59,16 @@ Expected output:
 wrote examples/audit_report.json
 overall_status=human_review_required
 ```
+
+## Render The Devpost Demo Video
+
+Requires Node.js, Playwright, ffmpeg, and macOS `say`.
+
+```bash
+node scripts/render_demo_video.mjs
+```
+
+The script renders storyboard frames under `media/frames/`, narration under `media/audio/`, and the final MP4 under `media/exports/`.
 
 ## UiPath AgentHack Track
 
