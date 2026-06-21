@@ -1,0 +1,65 @@
+{
+  "run_id": "uipath-agenthack-demo-001",
+  "source_system": "uipath_test_cloud_demo",
+  "workflow_name": "agentic-release-quality-gate",
+  "human_final_required": true,
+  "agent_output": {
+    "summary": "The release is ready because the new claims audit passed, fragile tests were reviewed, and the automation will reduce manual QA time by 80%. A human approver must sign off before publication.",
+    "authoring_agent": "release-readiness-agent",
+    "target_decision": "release_go_no_go"
+  },
+  "claims": [
+    {
+      "id": "claim-001",
+      "text": "The new claims audit passed.",
+      "evidence_ids": ["ev-001"],
+      "support_keywords": ["claims audit", "passed"],
+      "failure_code_if_unsupported": "audit_status_missing"
+    },
+    {
+      "id": "claim-002",
+      "text": "Fragile tests were reviewed.",
+      "evidence_ids": ["ev-002"],
+      "support_keywords": ["fragile tests", "reviewed"],
+      "failure_code_if_unsupported": "test_review_missing"
+    },
+    {
+      "id": "claim-003",
+      "text": "The automation will reduce manual QA time by 80%.",
+      "evidence_ids": ["ev-003"],
+      "support_keywords": ["80%"],
+      "contradiction_keywords": ["30-40%"],
+      "failure_code_if_unsupported": "overclaimed_quantified_effect"
+    },
+    {
+      "id": "claim-004",
+      "text": "A human approver must sign off before publication.",
+      "evidence_ids": ["ev-004"],
+      "support_keywords": ["human approver", "sign off"],
+      "failure_code_if_unsupported": "human_gate_missing"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-001",
+      "source": "UiPath Test Cloud run summary",
+      "snippet": "The claims audit suite passed 42 of 42 deterministic checks."
+    },
+    {
+      "id": "ev-002",
+      "source": "UiPath Test Cloud risk review queue",
+      "snippet": "Three fragile tests were reviewed and tagged for repair before the next sprint."
+    },
+    {
+      "id": "ev-003",
+      "source": "Pilot benchmark note",
+      "snippet": "The pilot suggests a 30-40% reduction in manual QA triage time after two weeks."
+    },
+    {
+      "id": "ev-004",
+      "source": "Release governance policy",
+      "snippet": "A human approver must sign off before any external publication or release decision."
+    }
+  ]
+}
+
