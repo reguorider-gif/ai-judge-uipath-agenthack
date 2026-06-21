@@ -1,0 +1,33 @@
+{
+  "contract_name": "ai-judge-uipath-maestro-case-gate",
+  "track": "UiPath Maestro Case",
+  "case_stage": "release-readiness-review",
+  "actors": [
+    "release-readiness-agent",
+    "test-cloud-reviewer",
+    "human-approver"
+  ],
+  "case_flow": [
+    {
+      "stage": "intake",
+      "owner": "release-readiness-agent",
+      "output": "agent_output_packet"
+    },
+    {
+      "stage": "claim_support_audit",
+      "owner": "ai-judge-adapter",
+      "output": "audit_report"
+    },
+    {
+      "stage": "exception_review",
+      "owner": "test-cloud-reviewer",
+      "condition": "any claim is weakly_verified, unverifiable, or contradicted"
+    },
+    {
+      "stage": "human_final_gate",
+      "owner": "human-approver",
+      "condition": "external publication or release decision"
+    }
+  ]
+}
+
