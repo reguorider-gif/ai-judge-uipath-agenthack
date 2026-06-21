@@ -1,0 +1,48 @@
+{
+  "contract_name": "ai-judge-uipath-test-cloud-gate",
+  "track": "UiPath Test Cloud",
+  "input_from_uipath": {
+    "run_id": "string",
+    "workflow_name": "string",
+    "agent_output": {
+      "summary": "string",
+      "authoring_agent": "string",
+      "target_decision": "release_go_no_go"
+    },
+    "claims": [
+      {
+        "id": "claim-001",
+        "text": "string",
+        "evidence_ids": ["ev-001"],
+        "support_keywords": ["string"],
+        "contradiction_keywords": ["string"]
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-001",
+        "source": "UiPath Test Cloud run summary",
+        "snippet": "string"
+      }
+    ]
+  },
+  "output_to_uipath": {
+    "overall_status": "allow_with_trace | human_review_required",
+    "claim_results": [
+      {
+        "claim_id": "claim-001",
+        "status": "verified | weakly_verified | unverifiable | contradicted",
+        "failure_code": "string | null",
+        "recommended_action": "allow_with_trace | create_test_or_review_task | block_until_evidence_added | route_to_human_review"
+      }
+    ],
+    "uipath_test_cloud_actions": [
+      {
+        "type": "create_review_task",
+        "claim_id": "claim-001",
+        "reason": "string"
+      }
+    ]
+  }
+}
+
